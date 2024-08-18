@@ -42,7 +42,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body style="background-color: #910000;">
-<?php  include 'nav.php'; ?>
+<?php  include 'navB.php'; ?>
    
     <div class="container">
         <br>
@@ -135,10 +135,9 @@
                         <div class="col-md-4">
 
                             <label>เลขบัตรประชาชน (เลข 13 หลัก)</label>
-                            <input type='text' name='pid' required  minlength="13" maxlength="13" pattern="[0-9]*" class='form-control' id="validationCustom04" >
-                            <div class="invalid-feedback">
-                                กรุณากรอกข้อมูล เลข 13 หลัก
-                            </div>
+                            <input type="text" name="pid" required class="form-control" minlength="13" maxlength="13" pattern="[0-9]*" id="pid">
+                            <!--<div class="invalid-feedback"> กรุณากรอกข้อมูล เลข 13 หลัก</div>-->
+                            <div class="invalid-feedback" id="pid-error"></div>
                                 
                         </div>
                         <div class="col-md-4">
@@ -552,24 +551,14 @@
     <script src="assets/jquery.min.js"></script>
     <script src="assets/script.js"></script>
     <script src="assets/tes.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="assets/signup_m4_ajaxpid.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     
     
-    <script>
-    let imgInput = document.getElementById('imgInput');
-        let previewImg = document.getElementById('previewImg');
-
-        imgInput.onchange = evt => {
-            const [file] = imgInput.files;
-                if (file) {
-                    previewImg.src = URL.createObjectURL(file)
-            }
-        }
-    </script>
 
     <script type="text/javascript">
         $(function() {

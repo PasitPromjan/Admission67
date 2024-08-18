@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <img src="logo.png" alt=" School Logo" class="brand-image" style="opacity: .8" height="30">
+    
     <title>ระบบรับสมัครนักเรียนเข้าศึกษาต่อระดับชั้นมัธยมศึกษาปีที่ 1และ 4</title>
     <style type="text/css"> 
 
@@ -34,7 +34,7 @@
     </style>-->
 </head>
 <body style="background-color: #910000;">
-<div id="non-printable"><?php include 'nav.php';?></div>
+<div id="non-printable"><?php include 'navB.php';?></div>
     
             <?php if (isset($_GET['id'])&&isset($_GET['class'])) {
                     

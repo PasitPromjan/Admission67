@@ -30,7 +30,7 @@
 </head>
 <body style="background-color: #910000;">
 <div id="non-printable"> 
-    <?php include 'nav.php';?>
+    <?php include 'navB.php';?>
     <br>
 </div>    
     <div class="container">

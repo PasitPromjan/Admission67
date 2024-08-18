@@ -14,6 +14,26 @@
 <?php 
     session_start();
     require_once 'config/db.php';
+        if(isset($_POST['pid'])) {
+            $pid = $_POST['pid'];
+            
+            // สร้างคำสั่ง SQL ในการตรวจสอบ pid
+            $sql = "SELECT COUNT(*) FROM m1 WHERE pid = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $pid);
+            $stmt->execute();
+            $stmt->bind_result($count);
+            $stmt->fetch();
+            $stmt->close();
+        
+            // ถ้า pid มีอยู่แล้ว
+            if($count > 0) {
+                echo 'exists';
+            } else {
+                echo 'not_exists';
+            }
+        }
+        
 
         $stat = '0';
         $title = $_POST['title'];

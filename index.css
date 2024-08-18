@@ -1,0 +1,37 @@
+
+
+.custom-img {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    background-size: cover;
+    object-fit: cover;
+    margin: 0 auto;
+    height: 70vh;
+}
+
+
+@media (max-width: 1200px) {
+    .custom-img {
+        height: 70vh;
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-img {
+        height: 60vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-img {
+        height: 60vh;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-img {
+        height: 60vh;
+    }
+}
+

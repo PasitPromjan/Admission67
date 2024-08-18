@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="index.css">
     <link rel="icon" type="image/x-icon" href="icon.png">
     <title>ระบบรับสมัครนักเรียนเข้าศึกษาต่อระดับชั้นมัธยมศึกษาปีที่ 1และ 4</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -44,11 +44,10 @@
       
     </style>
 </head>
-<body style="background-color: #910000;">
-    
+<body style="background: linear-gradient(125deg, #D32431, #910000);">
     <?php
         if(!isset($_SESSION['user_login'])){
-            include 'nav.php';
+            include 'navB.php';
         }
         else{
             include 'navUser.php';
@@ -60,18 +59,30 @@
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     ?>
     <br>
+    
     <div class="container">
+        
     <form action="index.php" method="POST">
-        <div class="bg-light p-5 rounded">
+        <div class="bg-light p-5 rounded" style="overflow: hidden; ">
+            
             <center><h4 class="alert alert-warning">ระบบรับสมัครนักเรียนเข้าศึกษาต่อระดับชั้นมัธยมศึกษาปีที่ 1 และ 4 ปีการศึกษา 2567<br> ประเภทห้องเรียนปกติ</h4>
             <h4 class='text-danger'>เปิดรับสมัครตั้งแต่วันที่ 4 มีนาคม 2567 เวลา 8.30 น. ถึงวันที่ 13 มีนาคม 2567 เวลา 16.30น.</h4></center>
             <br>
             <hr>
+            
+                    <div class="card" >
+                        <div class="card-header bg-danger text-light"><h5>ประกาศ</h5></div>
+                        <div class="card-body announce" id="announce-list" style="max-height: 150px; overflow-y: auto;">
+
+
+                        </div>
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3 text-center">
                             <div class="card">
                                 <div class="card-body shadow-sm  g-0 border rounded overflow-hidden h-lg-250" >
-                                    <v class="card-text"><span class="material-symbols-outlined" style="font-size:40px;">library_add</span><h5>ชั้นมัธยมศึกษาปีที่ 1</h5></v>
+                                    <v class="card-text"><span class="material-symbols-outlined" style="font-size:40px;">library_add</span><h5>มัธยมศึกษาปีที่ 1</h5></v>
                                     <p>   
                                         <div class="d-flex justify-content-center">
                                             <?php if($row['open'] == 1){ ?><a href="signupM1"  class="btn btn-outline-danger "><h5> สมัคร</h5></a> <?php } ?>
@@ -85,8 +96,8 @@
                         </div>
                         <div class="col-12 col-sm-6 mb-3 text-center">
                                 <div class="card">
-                                    <div class="card-body shadow-sm  g-0 border rounded overflow-hidden h-lg-250 ">
-                                        <v class="card-text"><span class="material-symbols-outlined" style="font-size:40px;">library_add</span><h5>ชั้นมัธยมศึกษาปีที่ 4</h5></v>
+                                    <div class="card-body shadow-sm  g-0 border rounded overflow-hidden h-lg-250" >
+                                        <v class="card-text"><span class="material-symbols-outlined" style="font-size:40px;">library_add</span><h5>มัธยมศึกษาปีที่ 4</h5></v>
                                             <p>
                                                 
                                                 <div class="d-flex justify-content-center">
@@ -99,9 +110,9 @@
                                 </div>
                         </div>
                     </div>
-                    <hr>
-                <div class="card ">
-                    <h5 class="card-header bg-danger "></h5>
+                    
+                <div class="card border-danger">
+                    
                     <div class="card-body">
                     <h4>เอกสารที่ต้องเตรียม</h4>
                     		<ol>
@@ -114,124 +125,116 @@
                 </div>
                 
                 <hr>
-                <div class="card ">
-                    <div class="chartBox">
-                            <h4 class="text-center">จำนวนนักเรียนที่สมัคร</h4>
-                            <canvas id="myChart" width="400" height="200"></canvas>
-
-                            <?php 
-                                try{
-                                // $sql = " SELECT * FROM test";
-                                    $k = array();
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-04' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[0] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-05' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[1] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-06' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[2] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-07' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[3] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-08' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[4] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-09' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[5] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-10' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[6] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-11' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[7] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-12' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[8] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m1 WHERE DATE(sign_when)='2024-03-13' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $k[9] = $row['COUNT(id)'];
-
-                                    $p = array();
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-04' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[0] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-05' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[1] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-06' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[2] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-07' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[3] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-08' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[4] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-09' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[5] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-10' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[6] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-11' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[7] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-12' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[8] = $row['COUNT(id)'];
-                                    $result = $conn->query("SELECT COUNT(id) FROM m4 WHERE DATE(sign_when)='2024-03-13' ");
-                                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                                    $p[9] = $row['COUNT(id)'];
-                                        
+                        <div class="card ">
+                                <div class="chartBox">
+                                    <h4 class="text-center">จำนวนนักเรียนที่สมัคร</h4>
                                     
-                                } catch(PDOException $e){
-                                    die("ERROR" . $e->getMessage());
-                                }
-                            ?>
-                            <script>
-                                // Data for the chart
-                                const k = <?php echo json_encode($k); ?>;
-                                const p = <?php echo json_encode($p); ?>;
-                                const data = {
-                                    labels: ['วันที่ 4', 'วันที่ 5', 'วันที่ 6', 'วันที่ 7','วันที่ 8','วันที่ 9','วันที่ 10','วันที่ 11','วันที่ 12','วันที่ 13'],
-                                    datasets: [{
-                                        label: 'ชั้นมัธยมศึกษาปีที่ 1',
-                                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                                        borderColor: 'rgba(75, 192, 192, 1)',
-                                        borderWidth: 1,
-                                        data: k,
-                                    },{
-                                        label: 'ชั้นมัธยมศึกษาปีที่ 4',
-                                        backgroundColor: 'rgba(255, 59, 39, 0.7)',
-                                        borderColor: 'rgba(255, 59, 39, 1)',
-                                        borderWidth: 1,
-                                        data: p,
-                                    }]
-                                };
+                                    <?php 
+                                    try {
+                                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                        
+                                        // Fetch firstday and lastday from chartdate table where id = 1
+                                        $stmt = $conn->prepare("SELECT firstday, lastday FROM chartdate WHERE id = 1");
+                                        $stmt->execute();
+                                        $dateRange = $stmt->fetch(PDO::FETCH_ASSOC);
+                                        $start_date = $dateRange['firstday'];
+                                        $end_date = $dateRange['lastday'];
 
-                                const config = {
-                                    type: 'bar',
-                                    data,
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
+                                        function fetchCount($conn, $date, $table) {
+                                            $stmt = $conn->prepare("SELECT COUNT(id) as count FROM $table WHERE DATE(sign_when) = :date");
+                                            $stmt->execute(['date' => $date]);
+                                            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                                            return $row['count'];
                                         }
-                                    }
-                                };
 
-                                // Get the canvas element
-                                const myChart = new Chart(
-                                    document.getElementById('myChart'),
-                                    config
-                                );
-                            </script>
+                                        $dates = [];
+                                        $currentDate = $start_date;
+                                        while (strtotime($currentDate) <= strtotime($end_date)) {
+                                            $dates[] = $currentDate;
+                                            $currentDate = date("Y-m-d", strtotime($currentDate . ' + 1 day'));
+                                        }
+
+                                        $k = array_map(function($date) use ($conn) {
+                                            return fetchCount($conn, $date, 'm1');
+                                        }, $dates);
+
+                                        $p = array_map(function($date) use ($conn) {
+                                            return fetchCount($conn, $date, 'm4');
+                                        }, $dates);
+
+                                    } catch(PDOException $e) {
+                                        die("ERROR: " . $e->getMessage());
+                                    }
+                                    ?>
+
+                                    <canvas id="myChart" width="400" height="200"></canvas>
+
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', (event) => {
+                                            const m1Counts = <?php echo json_encode($k); ?>;
+                                            const m4Counts = <?php echo json_encode($p); ?>;
+                                            const labels = <?php echo json_encode(array_map(function($date) {
+                                                return 'วันที่ ' . date("j", strtotime($date));
+                                            }, $dates)); ?>;
+                                            
+                                            const data = {
+                                                labels: labels,
+                                                datasets: [
+                                                    {
+                                                        label: 'ชั้นมัธยมศึกษาปีที่ 1',
+                                                        backgroundColor: '#FFE382',
+                                                        borderColor: '#FFC47E',
+                                                        borderWidth: 1,
+                                                        data: m1Counts,
+                                                    },
+                                                    {
+                                                        label: 'ชั้นมัธยมศึกษาปีที่ 4',
+                                                        backgroundColor: '#FF6969',
+                                                        borderColor: '#C70039',
+                                                        borderWidth: 1,
+                                                        data: m4Counts,
+                                                    }
+                                                ]
+                                            };
+
+                                            const config = {
+                                                type: 'bar',
+                                                data: data,
+                                                options: {
+                                                    responsive: true,
+                                                    plugins: {
+                                                        legend: {
+                                                            position: 'top',
+                                                        },
+                                                        title: {
+                                                            display: true,
+                                                            text: 'จำนวนนักเรียนที่สมัครแต่ละวัน'
+                                                        }
+                                                    },
+                                                    scales: {
+                                                        y: {
+                                                            beginAtZero: true,
+                                                            title: {
+                                                                display: true,
+                                                                text: 'จำนวน'
+                                                            }
+                                                        },
+                                                        x: {
+                                                            title: {
+                                                                display: true,
+                                                                text: 'วัน'
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                            };
+
+                                            const ctx = document.getElementById('myChart').getContext('2d');
+                                            new Chart(ctx, config);
+                                        });
+                                    </script>
+                                </div>
                         </div>
-                    </div>
             <!--<div class="container">
                     <?php
 
@@ -283,7 +286,9 @@
         </div>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
+    <script src="assets/announce.js"></script>
+    
 </body>
 </html>
